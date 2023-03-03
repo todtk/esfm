@@ -1,33 +1,41 @@
 # -*- coding: utf-8 -*-
 
 import os, pathlib
-
-from data_decrypt import Decryptor
-from temp_extract import Extractor
+from data_ import DataManager
+from temp_ import TempManager
 
 
 CLIENT_PATH = os.path.join(os.getcwd(), "client", "")
-FILES_PATH = os.path.join(os.getcwd(), "client", "files", "")
-TEMP_PATH = os.path.join(CLIENT_PATH, "files", "temp", "inet", "")
-DATA_PATH = os.path.join(CLIENT_PATH, "files", "data", "")
 
-class Launcher():
+
+class ESManager():
 
     def __init__(self) -> None:
+        pathlib.Path(CLIENT_PATH).mkdir(parents=True, exist_ok=True)
+
+    def get_start_window(self):
         ...
 
-    def check_client(self) -> None:
+    def get_statusbar(self):
+        ...
 
-        if not os.path.exists(CLIENT_PATH):
-            pathlib.Path(CLIENT_PATH).mkdir(parents=True, exist_ok=True)
+    def get_header(self):
+        ...
 
-    def data_decrypt(self) -> None:
-        if Decryptor.decrypt(FILES_PATH):
-            print("DECRYPT COMPLETE")
-        else:
-            print("UNKNOWN ERROR")
 
+esm = ESManager()
+dm = DataManager(client_path=CLIENT_PATH)
+tm = TempManager(client_path=CLIENT_PATH)
 
 
 if __name__ == "__main__":
-    Extractor.extract(client_path=CLIENT_PATH)
+
+    if dm.start_decrypting():
+        print("DECRYPTING COMPLETE")
+    else:
+        print("DECRYPTING ERROR")
+
+    if dm.start_extracting():
+        print("EXTRACTING COMPLETE")
+    else:
+        print("EXTRACTING ERROR")
