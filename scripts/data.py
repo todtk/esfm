@@ -152,4 +152,4 @@ class DataManager():
             else:
                 break
         
-        return {"complete_status": True}
+        return True
