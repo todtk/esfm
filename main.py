@@ -1,41 +1,28 @@
 # -*- coding: utf-8 -*-
 
-import os, pathlib
-from data_ import DataManager
-from temp_ import TempManager
+import sys, os, pathlib, scripts
+from PyQt5 import QtWidgets
+from ui.window import AppWindow
 
 
-CLIENT_PATH = os.path.join(os.getcwd(), "client", "")
-
-
-class ESManager():
+class ESFM():
 
     def __init__(self) -> None:
-        pathlib.Path(CLIENT_PATH).mkdir(parents=True, exist_ok=True)
 
-    def get_start_window(self):
-        ...
+        pathlib.Path(os.path.join(os.getcwd(), "client", "")).mkdir(parents = True, exist_ok = True)
 
-    def get_statusbar(self):
-        ...
+        data = scripts.DataManager()
+        # temp = scripts.TempManager()
+        # cache = scripts.CacheManager()
 
-    def get_header(self):
-        ...
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.window = AppWindow(data)
 
 
-esm = ESManager()
-dm = DataManager(client_path=CLIENT_PATH)
-tm = TempManager(client_path=CLIENT_PATH)
+esfm = ESFM()
 
 
 if __name__ == "__main__":
 
-    if dm.start_decrypting():
-        print("DECRYPTING COMPLETE")
-    else:
-        print("DECRYPTING ERROR")
-
-    if dm.start_extracting():
-        print("EXTRACTING COMPLETE")
-    else:
-        print("EXTRACTING ERROR")
+    esfm.window.show()
+    sys.exit(esfm.app.exec_())
