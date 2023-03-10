@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
 
-# from PyQt5 import QtCore
+from PyQt5 import QtCore
 
-# class QT_Thread(QtCore.QThread):
 
-#     mysignal = QtCore.pyqtSignal(str)
+class DataDecoderThread(QtCore.QThread):
+    mysignal = QtCore.pyqtSignal(int)
 
-#     def __init__(self, parent = None) -> None:
+    def __init__(self, data, parent = None) -> None:
+        QtCore.QThread.__init__(self, parent = parent)
 
-#         QtCore.QThread.__init__(self, parent)
+    def run(self):
+        ...
+
+
+class DataExtractThread(QtCore.QThread):
+    mysignal = QtCore.pyqtSignal(int)
+
+    def __init__(self, data, parent = None) -> None:
+        QtCore.QThread.__init__(self, parent = parent)
         
+    def run(self):
+        ...
