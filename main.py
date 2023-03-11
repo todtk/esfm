@@ -10,6 +10,7 @@ class ESFM():
     def __init__(self) -> None:
 
         pathlib.Path(os.path.join(os.getcwd(), "client", "")).mkdir(parents = True, exist_ok = True)
+        pathlib.Path(os.path.join(os.getcwd(), "logs", "")).mkdir(parents = True, exist_ok = True)
 
         data = scripts.DataManager()
         # temp = scripts.TempManager()
