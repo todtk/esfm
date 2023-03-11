@@ -17,9 +17,6 @@ class AppWindow(QtWidgets.QWidget):
         self.obj = WindowSlots(ui=self.ui, data=data)
         self.obj.get_all_checks()
 
-        # self.te_thread = TempExtractThread(data=data)
-        # self.ce_thread = CacheExtractThread(data=data)
-
         # refresh buttons
         self.ui.data_button_1_2.clicked.connect(self.obj.check_data1)
         self.ui.data_button_2_2.clicked.connect(self.obj.check_data2)
@@ -29,6 +26,3 @@ class AppWindow(QtWidgets.QWidget):
         # functional buttons
         self.ui.data_button.clicked.connect(self.obj.decode_data_clicked)
         self.ui.data_button_2.clicked.connect(self.obj.extract_data_clicked)
-
-        
-
