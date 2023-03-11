@@ -6,23 +6,25 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 class WindowElems(object):
 
     def setupUi(self, Window):
-        
-        Window.setObjectName("Window")
-        Window.setFixedSize(500, 300)
-        Window.setWindowTitle("ESFM by todtk")
-        Window.setWindowIcon(QtGui.QIcon('./ui/images/icon.png'))
-        Window.setWindowFlags(QtCore.Qt.Window)
 
-        QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Acumin Pro Semibold.ttf')
+        QtGui.QFontDatabase.addApplicationFont("./ui/fonts/Acumin Pro Semibold.ttf")
         style_sheet = """
             font: 8pt Acumin Pro;
             """
+        
+        Window.setObjectName("Window")
+        Window.setFixedSize(500, 300)
+        Window.setWindowTitle("Epic Seven File Manager")
+        Window.setWindowIcon(QtGui.QIcon("./ui/images/icon.png"))
+        Window.setWindowFlags(QtCore.Qt.Window)
+        Window.setStyleSheet(style_sheet)
+
+        
 
         self.TabMenu = QtWidgets.QTabWidget(Window)
         self.TabMenu.setEnabled(True)
         self.TabMenu.setGeometry(QtCore.QRect(5, 5, 490, 290))
         self.TabMenu.setObjectName("TabMenu")
-        self.TabMenu.setStyleSheet(style_sheet)
 
         #######################################################################
         ### DATA                                                            ###
@@ -100,6 +102,7 @@ class WindowElems(object):
         #######################################################################
         self.temp = QtWidgets.QWidget()
         self.temp.setObjectName("temp")
+        self.temp.setDisabled(True)
 
         self.temp_button_1 = QtWidgets.QPushButton(self.temp)
         self.temp_button_1.setEnabled(False)
@@ -135,6 +138,7 @@ class WindowElems(object):
         #######################################################################
         self.cache = QtWidgets.QWidget()
         self.cache.setObjectName("cache")
+        self.cache.setDisabled(True)
 
         self.cache_button_1 = QtWidgets.QPushButton(self.cache)
         self.cache_button_1.setEnabled(False)
