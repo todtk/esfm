@@ -1,13 +1,5 @@
 ![banner](https://raw.githubusercontent.com/todtk/esfm/main/readme/banner.png)
 
-### INSTRUCTION
-
-* install Python 3.10 [Windows installer (32-bit)](https://www.python.org/ftp/python/3.10.8/python-3.10.8.exe) / [Windows installer (64-bit)](https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe).
-* Download [this repository](https://github.com/todtk/esfm/archive/refs/heads/main.zip) and unpack.
-* Copy files from com.stove.epic7.google to [client](https://github.com/todtk/esfm/tree/main/client) folder.
-* DEV IN PROGRESS
-* DEV IN PROGRESS
-
 ### SYSTEM REQUIREMENTS
 
 * RAM - 6GB
