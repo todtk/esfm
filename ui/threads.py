@@ -17,7 +17,7 @@ class DataDecodeThread(QtCore.QThread):
 
 
 class DataExtractThread(QtCore.QThread):
-    mysignal = QtCore.pyqtSignal(dict)
+    mysignal = QtCore.pyqtSignal(int)
 
     def __init__(self, parent = None) -> None:
         QtCore.QThread.__init__(self, parent = parent)

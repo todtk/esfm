@@ -54,8 +54,9 @@ class DataManager():
 
                     persent = int(os.path.getsize(os.path.join(self.pck_path)) / (size / 100))
                     if cur_persent != persent:
-                        signal.emit(persent)
                         cur_persent = persent
+                        signal.emit(cur_persent)
+                        
 
                     decrypted_bytes = self.get_xor(stream.read(len(key)), key)
                     pck.write(decrypted_bytes)
@@ -121,16 +122,17 @@ class DataManager():
         cur = 0
         flag = 0
 
+        cur_persent = 0
+
         while True:
 
             if cur >= flag:
                 flag = cur
 
-                status_dict = {
-                    "persent": int(cur / (size / 100)),
-                    "success:errors": [success, errors]
-                }
-                signal.emit(status_dict)
+                persent = int(cur / (size / 100))
+                if cur_persent != persent:
+                    cur_persent = persent
+                    signal.emit(cur_persent)
 
                 try:
 

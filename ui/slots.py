@@ -47,7 +47,9 @@ class WindowSlots(QtCore.QObject):
 
     def decode_data_clicked(self):
         self.ui.data_button.setDisabled(True)
+        self.ui.data_button_2.setDisabled(True)
         self.ui.data_button_1_2.setDisabled(True)
+        self.ui.data_button_2_2.setDisabled(True)
         self.dd_thread.start()
 
     def decode_data_started(self):
@@ -55,6 +57,7 @@ class WindowSlots(QtCore.QObject):
 
     def decode_data_finished(self):
         self.ui.data_button_1_2.setEnabled(True)
+        self.ui.data_button_2_2.setEnabled(True)
         self.ui.data_progress.setProperty("value", 100)
         self.ui.data_label.setText("< decrypted >")
 
@@ -74,20 +77,23 @@ class WindowSlots(QtCore.QObject):
         self.ui.data_progress_2.setProperty("value", 0)
 
     def extract_data_clicked(self):
+        self.ui.data_button.setDisabled(True)
         self.ui.data_button_2.setDisabled(True)
+        self.ui.data_button_1_2.setDisabled(True)
         self.ui.data_button_2_2.setDisabled(True)
         self.de_thread.start()
 
     def extract_data_started(self):
-        ...
+        self.ui.data_label_2.setText("< extracting... >")
 
     def extract_data_finished(self):
+        self.ui.data_button_1_2.setEnabled(True)
         self.ui.data_button_2_2.setEnabled(True)
         self.ui.data_progress_2.setProperty("value", 100)
+        self.ui.data_label_2.setText("< extracted... >")
 
-    def extract_data_change(self, status: dict):
-        self.ui.data_progress_2.setProperty("value", status["persent"])
-        self.ui.data_label_2.setText("< {} extracted / {} errors >".format(status["success:errors"][0], status["success:errors"][1]))
+    def extract_data_change(self, cur_persent: int):
+        self.ui.data_progress_2.setProperty("value", cur_persent)
 
     ####################################################################################################
     ### TAB_TEMP                                                                                     ###
