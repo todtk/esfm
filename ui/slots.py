@@ -54,7 +54,6 @@ class WindowSlots(QtCore.QObject):
         self.ui.data_label.setText("< decrypting... >")
 
     def decode_data_finished(self):
-        self.ui.data_button.setEnabled(True)
         self.ui.data_button_1_2.setEnabled(True)
         self.ui.data_progress.setProperty("value", 100)
         self.ui.data_label.setText("< decrypted >")
@@ -83,7 +82,6 @@ class WindowSlots(QtCore.QObject):
         ...
 
     def extract_data_finished(self):
-        self.ui.data_button_2.setEnabled(True)
         self.ui.data_button_2_2.setEnabled(True)
         self.ui.data_progress_2.setProperty("value", 100)
 
