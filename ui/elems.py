@@ -186,7 +186,7 @@ class WindowElems(object):
         self.TabMenu.setCurrentIndex(0)
 
         self.label = QtWidgets.QLabel(Window)
-        self.label.setGeometry(QtCore.QRect(320, 280, 170, 15))
+        self.label.setGeometry(QtCore.QRect(315, 275, 170, 15))
         self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.label.setText("by todtk")
