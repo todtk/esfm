@@ -36,7 +36,7 @@ class WindowSlots(QtCore.QObject):
     # DECODE
     def check_data1(self) -> None:
         """check data.pack file, swicth buttons status"""
-        if self.data.check_data1():
+        if self.data.check_datapack():
             self.ui.data_button.setEnabled(True)
             self.ui.data_label.setText("< ready >")
         else:
@@ -60,6 +60,9 @@ class WindowSlots(QtCore.QObject):
 
     def decode_data_finished(self) -> None:
         """enable buttons, change window status"""
+        if self.ui.data_checkbox.checkState() == 2:
+            self.data.delete_datapack()
+
         self.check_all()
 
         self.ui.data_progress.setProperty("value", 100)
@@ -71,7 +74,7 @@ class WindowSlots(QtCore.QObject):
     # EXTRACT
     def check_data2(self) -> None:
         """check data.pck file, swicth buttons status"""
-        if self.data.check_data2():
+        if self.data.check_datapck():
             self.ui.data_button_2.setEnabled(True)
             self.ui.data_label_2.setText("< ready >")
         else:
@@ -95,6 +98,9 @@ class WindowSlots(QtCore.QObject):
 
     def extract_data_finished(self) -> None:
         """enable buttons, change window status"""
+        if self.ui.data_checkbox_2.checkState() == 2:
+            self.data.delete_datapck()
+
         self.check_all()
 
         self.ui.data_progress_2.setProperty("value", 100)
