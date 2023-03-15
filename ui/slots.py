@@ -55,6 +55,7 @@ class WindowSlots(QtCore.QObject):
         self.dd_thread.start()
 
     def decode_data_started(self) -> None:
+        """change window status"""
         self.ui.data_label.setText("< decoding... >")
 
     def decode_data_finished(self) -> None:
