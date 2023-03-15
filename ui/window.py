@@ -15,7 +15,7 @@ class AppWindow(QtWidgets.QWidget):
         self.ui.setupUi(self)
 
         self.obj = WindowSlots(ui=self.ui, data=data)
-        self.obj.get_all_checks()
+        self.obj.check_all()
 
         # refresh buttons
         self.ui.data_button_1_2.clicked.connect(self.obj.check_data1)

@@ -23,7 +23,7 @@ class WindowSlots(QtCore.QObject):
         self.de_thread.finished.connect(self.extract_data_finished)
         self.de_thread.mysignal.connect(self.extract_data_change, QtCore.Qt.QueuedConnection)
 
-    def get_all_checks(self):
+    def check_all(self):
         self.check_data1()
         self.check_data2()
         self.check_temp()
@@ -34,65 +34,72 @@ class WindowSlots(QtCore.QObject):
     ####################################################################################################
 
     # DECODE
-    def check_data1(self):
-
+    def check_data1(self) -> None:
+        """check data.pack file, swicth buttons status"""
         if self.data.check_data1():
             self.ui.data_button.setEnabled(True)
-            self.ui.data_label.setText("< ready to decrypt >")
+            self.ui.data_label.setText("< ready >")
         else:
             self.ui.data_button.setDisabled(True)
             self.ui.data_label.setText("< copy file in 'client' folder >")
 
+        self.ui.data_button_1_2.setEnabled(True)
         self.ui.data_progress.setProperty("value", 0)
 
-    def decode_data_clicked(self):
+    def decode_data_clicked(self) -> None:
+        """disable buttons, change window status"""
         self.ui.data_button.setDisabled(True)
         self.ui.data_button_2.setDisabled(True)
         self.ui.data_button_1_2.setDisabled(True)
         self.ui.data_button_2_2.setDisabled(True)
         self.dd_thread.start()
 
-    def decode_data_started(self):
-        self.ui.data_label.setText("< decrypting... >")
+    def decode_data_started(self) -> None:
+        self.ui.data_label.setText("< decoding... >")
 
-    def decode_data_finished(self):
-        self.ui.data_button_1_2.setEnabled(True)
-        self.ui.data_button_2_2.setEnabled(True)
+    def decode_data_finished(self) -> None:
+        """enable buttons, change window status"""
+        self.check_all()
+
         self.ui.data_progress.setProperty("value", 100)
-        self.ui.data_label.setText("< decrypted >")
+        self.ui.data_label.setText("< decoded >")
 
-    def decode_data_change(self, cur_persent: int):
+    def decode_data_change(self, cur_persent: int) -> None:
         self.ui.data_progress.setProperty("value", cur_persent)
 
     # EXTRACT
-    def check_data2(self):
-
+    def check_data2(self) -> None:
+        """check data.pck file, swicth buttons status"""
         if self.data.check_data2():
             self.ui.data_button_2.setEnabled(True)
-            self.ui.data_label_2.setText("< ready to extract >")
+            self.ui.data_label_2.setText("< ready >")
         else:
             self.ui.data_button_2.setDisabled(True)
             self.ui.data_label_2.setText("< pls decrypt first >")
 
+        self.ui.data_button_2_2.setEnabled(True)
         self.ui.data_progress_2.setProperty("value", 0)
 
-    def extract_data_clicked(self):
+    def extract_data_clicked(self) -> None:
+        """disable buttons, start extract"""
         self.ui.data_button.setDisabled(True)
         self.ui.data_button_2.setDisabled(True)
         self.ui.data_button_1_2.setDisabled(True)
         self.ui.data_button_2_2.setDisabled(True)
         self.de_thread.start()
 
-    def extract_data_started(self):
+    def extract_data_started(self) -> None:
+        """change window status"""
         self.ui.data_label_2.setText("< extracting... >")
 
-    def extract_data_finished(self):
-        self.ui.data_button_1_2.setEnabled(True)
-        self.ui.data_button_2_2.setEnabled(True)
+    def extract_data_finished(self) -> None:
+        """enable buttons, change window status"""
+        self.check_all()
+
         self.ui.data_progress_2.setProperty("value", 100)
         self.ui.data_label_2.setText("< extracted... >")
 
-    def extract_data_change(self, cur_persent: int):
+    def extract_data_change(self, cur_persent: int) -> None:
         self.ui.data_progress_2.setProperty("value", cur_persent)
 
     ####################################################################################################
