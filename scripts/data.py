@@ -33,8 +33,11 @@ class DataManager():
     ####################################################################################################
     ### DECODER                                                                                      ###
     ####################################################################################################
-    def check_data1(self) -> bool:
+    def check_datapack(self) -> bool:
         return os.path.exists(self.pack_path)
+    
+    def delete_datapack(self) -> None:
+        os.remove(self.pack_path)
 
     def get_xor(self, data: bytearray, key: bytearray) -> bytes:
         return bytes(a ^ b for a, b in zip(data, cycle(key)))
@@ -70,8 +73,11 @@ class DataManager():
     ####################################################################################################
     ### EXTRACTOR                                                                                    ###
     ####################################################################################################
-    def check_data2(self) -> bool:
+    def check_datapck(self) -> bool:
         return os.path.exists(self.pck_path)
+    
+    def delete_datapck(self) -> None:
+        os.remove(self.pck_path)
 
     def read_header(self, header: bytes) -> int:
 
@@ -169,3 +175,5 @@ class DataManager():
 
             else:
                 break
+
+        os.close(pck_file)
