@@ -7,8 +7,8 @@ from scripts import data
 class DataDecodeThread(QtCore.QThread):
     mysignal = QtCore.pyqtSignal(int)
 
-    def __init__(self, parent = None) -> None:
-        QtCore.QThread.__init__(self, parent = parent)
+    def __init__(self, parent=None) -> None:
+        QtCore.QThread.__init__(self, parent=parent)
 
         self.data = data.DataManager()
 
@@ -19,8 +19,8 @@ class DataDecodeThread(QtCore.QThread):
 class DataExtractThread(QtCore.QThread):
     mysignal = QtCore.pyqtSignal(int)
 
-    def __init__(self, parent = None) -> None:
-        QtCore.QThread.__init__(self, parent = parent)
+    def __init__(self, parent=None) -> None:
+        QtCore.QThread.__init__(self, parent=parent)
         
         self.data = data.DataManager()
 
@@ -31,8 +31,8 @@ class DataExtractThread(QtCore.QThread):
 class TempExtractThread(QtCore.QThread):
     mysignal = QtCore.pyqtSignal(dict)
 
-    def __init__(self, temp, parent = None) -> None:
-        QtCore.QThread.__init__(self, parent = parent)
+    def __init__(self, temp, parent=None) -> None:
+        QtCore.QThread.__init__(self, parent=parent)
         
     def run(self):
         ...
@@ -41,8 +41,8 @@ class TempExtractThread(QtCore.QThread):
 class CacheExtractThread(QtCore.QThread):
     mysignal = QtCore.pyqtSignal(dict)
 
-    def __init__(self, cache, parent = None) -> None:
-        QtCore.QThread.__init__(self, parent = parent)
+    def __init__(self, cache, parent=None) -> None:
+        QtCore.QThread.__init__(self, parent=parent)
         
     def run(self):
         ...
