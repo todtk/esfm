@@ -97,6 +97,12 @@ class WindowSlots(QtCore.QObject):
         if self.ui.checkbox_data_extract_delete_after.checkState() == 2:
             self.data.delete_datapck()
 
+        if self.ui.checkbox_data_open_logs_folder.checkState() == 2:
+            self.data.open_logs_folder()
+
+        if self.ui.checkbox_data_open_data_folder.checkState() == 2:
+            self.data.open_data_folder()
+
         self.check_all()
 
         self.ui.progressbar_data_extract.setProperty("value", 100)

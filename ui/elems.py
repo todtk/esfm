@@ -67,10 +67,10 @@ class WindowElems(object):
         self.checkbox_data_extract_delete_after.setText("Delete data.pck")
         self.checkbox_data_extract_delete_after.setObjectName("checkbox_data_extract_delete_after")
 
-        self.checkbox_data_open_log_after = QtWidgets.QCheckBox(self.data_tab)
-        self.checkbox_data_open_log_after.setGeometry(QtCore.QRect(10, 140, 450, 20))
-        self.checkbox_data_open_log_after.setText("Open log")
-        self.checkbox_data_open_log_after.setObjectName("checkbox_data_open_log_after")
+        self.checkbox_data_open_logs_folder = QtWidgets.QCheckBox(self.data_tab)
+        self.checkbox_data_open_logs_folder.setGeometry(QtCore.QRect(10, 140, 450, 20))
+        self.checkbox_data_open_logs_folder.setText("Open log")
+        self.checkbox_data_open_logs_folder.setObjectName("checkbox_data_open_logs_folder")
 
         self.checkbox_data_open_data_folder = QtWidgets.QCheckBox(self.data_tab)
         self.checkbox_data_open_data_folder.setGeometry(QtCore.QRect(10, 160, 450, 20))
