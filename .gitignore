@@ -1,5 +1,11 @@
-__pycache__/
+**/__pycache__/
+
+.idea/
+.git/
+
 client/
 tests/
 logs/
+venv/
+
 untitled.ui
