@@ -5,190 +5,165 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 
 class WindowElems(object):
 
-    def setupUi(self, Window):
-
+    def setup_ui(self, window) -> None:
         QtGui.QFontDatabase.addApplicationFont("./ui/fonts/Acumin Pro Semibold.ttf")
-        style_sheet = """
-            font: 8pt Acumin Pro;
-            """
-        
-        Window.setObjectName("Window")
-        Window.setFixedSize(500, 300)
-        Window.setWindowTitle("Epic Seven File Manager")
-        Window.setWindowIcon(QtGui.QIcon("./ui/images/icon.png"))
-        Window.setWindowFlags(QtCore.Qt.Window)
-        Window.setStyleSheet(style_sheet)
+        style_sheet = """font: 8pt Acumin Pro;"""
 
-        self.TabMenu = QtWidgets.QTabWidget(Window)
-        self.TabMenu.setEnabled(True)
-        self.TabMenu.setGeometry(QtCore.QRect(5, 5, 490, 290))
-        self.TabMenu.setObjectName("TabMenu")
+        window.setObjectName("window")
+        window.setFixedSize(500, 300)
+        window.setWindowTitle(f"Epic Seven File Manager")
+        window.setWindowIcon(QtGui.QIcon("./ui/images/icon.png"))
+        window.setWindowFlags(QtCore.Qt.Window)
+        window.setStyleSheet(style_sheet)
 
-        #######################################################################
-        ### DATA                                                            ###
-        #######################################################################
-        self.data = QtWidgets.QWidget()
-        self.data.setObjectName("data")
+        self.tab_menu = QtWidgets.QTabWidget(window)
+        self.tab_menu.setEnabled(True)
+        self.tab_menu.setGeometry(QtCore.QRect(5, 5, 490, 290))
+        self.tab_menu.setObjectName("tab_menu")
 
-        # BUTTON_DECODE
-        self.data_button = QtWidgets.QPushButton(self.data)
-        self.data_button.setEnabled(False)
-        self.data_button.setGeometry(QtCore.QRect(10, 10, 80, 30))
-        self.data_button.setText("DECODE")
-        self.data_button.setObjectName("data_button")
+        # DATA
+        self.data_tab = QtWidgets.QWidget()
+        self.data_tab.setObjectName("data_tab")
 
-        # BUTTON_REFRESH
-        self.data_button_1_2 = QtWidgets.QPushButton(self.data)
-        self.data_button_1_2.setGeometry(QtCore.QRect(90, 10, 30, 30))
-        self.data_button_1_2.setObjectName("data_button_1_2")
+        self.button_data_decode = QtWidgets.QPushButton(self.data_tab)
+        self.button_data_decode.setEnabled(False)
+        self.button_data_decode.setGeometry(QtCore.QRect(10, 10, 80, 30))
+        self.button_data_decode.setText("DECODE")
+        self.button_data_decode.setObjectName("button_data_decode")
 
-        # CHECKBOX_DELETE
-        self.data_checkbox = QtWidgets.QCheckBox(self.data)
-        self.data_checkbox.setGeometry(QtCore.QRect(10, 50, 450, 20))
-        self.data_checkbox.setText("Delete data.pack after decoding")
-        self.data_checkbox.setObjectName("data_checkbox")
+        self.button_data_decode_refresh = QtWidgets.QPushButton(self.data_tab)
+        self.button_data_decode_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_data_decode_refresh.setObjectName("button_data_decode_refresh")
 
-        # STATUS_PROGRESSBAR
-        self.data_progress = QtWidgets.QProgressBar(self.data)
-        self.data_progress.setGeometry(QtCore.QRect(130, 10, 340, 30))
-        self.data_progress.setProperty("value", 0)
-        self.data_progress.setTextVisible(False)
-        self.data_progress.setFormat("%p%")
-        self.data_progress.setObjectName("data_progress")
+        self.checkbox_data_decode_delete_after = QtWidgets.QCheckBox(self.data_tab)
+        self.checkbox_data_decode_delete_after.setGeometry(QtCore.QRect(10, 50, 450, 20))
+        self.checkbox_data_decode_delete_after.setText("Delete data.pack")
+        self.checkbox_data_decode_delete_after.setObjectName("checkbox_data_decode_delete_after")
 
-        # STATUS_TEXT
-        self.data_label = QtWidgets.QLabel(self.data)
-        self.data_label.setGeometry(QtCore.QRect(300, 40, 170, 15))
-        self.data_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.data_label.setObjectName("data_label")
+        self.progressbar_data_decode = QtWidgets.QProgressBar(self.data_tab)
+        self.progressbar_data_decode.setGeometry(QtCore.QRect(130, 10, 340, 30))
+        self.progressbar_data_decode.setProperty("value", 0)
+        self.progressbar_data_decode.setTextVisible(False)
+        self.progressbar_data_decode.setFormat("%p%")
+        self.progressbar_data_decode.setObjectName("progressbar_data_decode")
 
-        # BUTTON_EXTRACT
-        self.data_button_2 = QtWidgets.QPushButton(self.data)
-        self.data_button_2.setEnabled(False)
-        self.data_button_2.setGeometry(QtCore.QRect(10, 80, 80, 30))
-        self.data_button_2.setText("UNPACK")
-        self.data_button_2.setObjectName("data_button_2")
+        self.label_data_decode = QtWidgets.QLabel(self.data_tab)
+        self.label_data_decode.setGeometry(QtCore.QRect(250, 40, 220, 15))
+        self.label_data_decode.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_data_decode.setObjectName("label_data_decode")
 
-        # BUTTON_REFRESH
-        self.data_button_2_2 = QtWidgets.QPushButton(self.data)
-        self.data_button_2_2.setGeometry(QtCore.QRect(90, 80, 30, 30))
-        self.data_button_2_2.setObjectName("data_button_2_2")
+        self.button_data_extract = QtWidgets.QPushButton(self.data_tab)
+        self.button_data_extract.setEnabled(False)
+        self.button_data_extract.setGeometry(QtCore.QRect(10, 80, 80, 30))
+        self.button_data_extract.setText("UNPACK")
+        self.button_data_extract.setObjectName("button_data_extract")
 
-        # CHECKBOX_DELETE
-        self.data_checkbox_2 = QtWidgets.QCheckBox(self.data)
-        self.data_checkbox_2.setGeometry(QtCore.QRect(10, 120, 450, 20))
-        self.data_checkbox_2.setText("Delete data.pck after unpacking")
-        self.data_checkbox_2.setObjectName("data_checkbox_2")
+        self.button_data_extract_refresh = QtWidgets.QPushButton(self.data_tab)
+        self.button_data_extract_refresh.setGeometry(QtCore.QRect(90, 80, 30, 30))
+        self.button_data_extract_refresh.setObjectName("button_data_extract_refresh")
 
-        # CHECKBOX_LOGS
-        self.data_checkbox_2_2 = QtWidgets.QCheckBox(self.data)
-        self.data_checkbox_2_2.setGeometry(QtCore.QRect(10, 140, 450, 20))
-        self.data_checkbox_2_2.setText("Open log file after unpacking")
-        self.data_checkbox_2_2.setObjectName("data_checkbox_2_2")
+        self.checkbox_data_extract_delete_after = QtWidgets.QCheckBox(self.data_tab)
+        self.checkbox_data_extract_delete_after.setGeometry(QtCore.QRect(10, 120, 450, 20))
+        self.checkbox_data_extract_delete_after.setText("Delete data.pck")
+        self.checkbox_data_extract_delete_after.setObjectName("checkbox_data_extract_delete_after")
 
-        # STATUS_PROGRESSBAR
-        self.data_progress_2 = QtWidgets.QProgressBar(self.data)
-        self.data_progress_2.setGeometry(QtCore.QRect(130, 80, 340, 30))
-        self.data_progress_2.setProperty("value", 0)
-        self.data_progress_2.setTextVisible(False)
-        self.data_progress_2.setFormat("%p%")
-        self.data_progress_2.setObjectName("data_progress_2")
+        self.checkbox_data_open_log_after = QtWidgets.QCheckBox(self.data_tab)
+        self.checkbox_data_open_log_after.setGeometry(QtCore.QRect(10, 140, 450, 20))
+        self.checkbox_data_open_log_after.setText("Open log")
+        self.checkbox_data_open_log_after.setObjectName("checkbox_data_open_log_after")
 
-        # STATUS_TEXT
-        self.data_label_2 = QtWidgets.QLabel(self.data)
-        self.data_label_2.setGeometry(QtCore.QRect(300, 110, 170, 15))
-        self.data_label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.data_label_2.setObjectName("data_label_2")
+        self.checkbox_data_open_data_folder = QtWidgets.QCheckBox(self.data_tab)
+        self.checkbox_data_open_data_folder.setGeometry(QtCore.QRect(10, 160, 450, 20))
+        self.checkbox_data_open_data_folder.setText("Open data")
+        self.checkbox_data_open_data_folder.setObjectName("checkbox_data_open_data_folder")
 
-        self.TabMenu.addTab(self.data, "Data")
+        self.progressbar_data_extract = QtWidgets.QProgressBar(self.data_tab)
+        self.progressbar_data_extract.setGeometry(QtCore.QRect(130, 80, 340, 30))
+        self.progressbar_data_extract.setProperty("value", 0)
+        self.progressbar_data_extract.setTextVisible(False)
+        self.progressbar_data_extract.setFormat("%p%")
+        self.progressbar_data_extract.setObjectName("progressbar_data_extract")
 
-        #######################################################################
-        ### TEMP                                                            ###
-        #######################################################################
-        self.temp = QtWidgets.QWidget()
-        self.temp.setObjectName("temp")
-        self.temp.setDisabled(True)
+        self.label_data_extract = QtWidgets.QLabel(self.data_tab)
+        self.label_data_extract.setGeometry(QtCore.QRect(250, 110, 220, 15))
+        self.label_data_extract.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_data_extract.setObjectName("label_data_extract")
 
-        # BUTTON_EXTRACT
-        self.temp_button_1 = QtWidgets.QPushButton(self.temp)
-        self.temp_button_1.setEnabled(False)
-        self.temp_button_1.setGeometry(QtCore.QRect(10, 10, 80, 30))
-        self.temp_button_1.setText("UNPACK")
-        self.temp_button_1.setObjectName("temp_button_1")
+        self.tab_menu.addTab(self.data_tab, "Data")
 
-        # BUTTON_REFRESH
-        self.temp_button_1_2 = QtWidgets.QPushButton(self.temp)
-        self.temp_button_1_2.setGeometry(QtCore.QRect(90, 10, 30, 30))
-        self.temp_button_1_2.setObjectName("temp_button_1_2")
+        # TEMP
+        self.temp_tab = QtWidgets.QWidget()
+        self.temp_tab.setObjectName("temp_tab")
+        self.temp_tab.setDisabled(True)
 
-        # CHECKBOX_DELETE
-        self.temp_checkbox_1 = QtWidgets.QCheckBox(self.temp)
-        self.temp_checkbox_1.setGeometry(QtCore.QRect(10, 50, 450, 20))
-        self.temp_checkbox_1.setText("Delete sourse files after unpaking")
-        self.temp_checkbox_1.setObjectName("temp_checkbox_1")
+        self.button_temp_extract = QtWidgets.QPushButton(self.temp_tab)
+        self.button_temp_extract.setEnabled(False)
+        self.button_temp_extract.setGeometry(QtCore.QRect(10, 10, 80, 30))
+        self.button_temp_extract.setText("UNPACK")
+        self.button_temp_extract.setObjectName("button_temp_extract")
 
-        # STATUS_PROGRESSBAR
-        self.temp_progress_1 = QtWidgets.QProgressBar(self.temp)
-        self.temp_progress_1.setGeometry(QtCore.QRect(130, 10, 340, 30))
-        self.temp_progress_1.setProperty("value", 0)
-        self.temp_progress_1.setTextVisible(False)
-        self.temp_progress_1.setFormat("%p%")
-        self.temp_progress_1.setObjectName("temp_progress_1")
+        self.button_temp_extract_refresh = QtWidgets.QPushButton(self.temp_tab)
+        self.button_temp_extract_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_temp_extract_refresh.setObjectName("button_temp_extract_refresh")
 
-        # STATUS_TEXT
-        self.temp_label = QtWidgets.QLabel(self.temp)
-        self.temp_label.setGeometry(QtCore.QRect(300, 40, 170, 15))
-        self.temp_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.temp_label.setObjectName("temp_label")
+        self.checkbox_temp_extract_delete_after = QtWidgets.QCheckBox(self.temp_tab)
+        self.checkbox_temp_extract_delete_after.setGeometry(QtCore.QRect(10, 50, 450, 20))
+        self.checkbox_temp_extract_delete_after.setText("Delete sourse files after unpaking")
+        self.checkbox_temp_extract_delete_after.setObjectName("checkbox_temp_extract_delete_after")
 
-        self.TabMenu.addTab(self.temp, "Temp")
+        self.progressbar_temp_extract = QtWidgets.QProgressBar(self.temp_tab)
+        self.progressbar_temp_extract.setGeometry(QtCore.QRect(130, 10, 340, 30))
+        self.progressbar_temp_extract.setProperty("value", 0)
+        self.progressbar_temp_extract.setTextVisible(False)
+        self.progressbar_temp_extract.setFormat("%p%")
+        self.progressbar_temp_extract.setObjectName("progressbar_temp_extract")
 
-        #######################################################################
-        ### CACHE                                                           ###
-        #######################################################################
-        self.cache = QtWidgets.QWidget()
-        self.cache.setObjectName("cache")
-        self.cache.setDisabled(True)
+        self.label_temp_extract = QtWidgets.QLabel(self.temp_tab)
+        self.label_temp_extract.setGeometry(QtCore.QRect(300, 40, 170, 15))
+        self.label_temp_extract.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_temp_extract.setObjectName("label_temp_extract")
 
-        # BUTTON_EXTRACT
-        self.cache_button_1 = QtWidgets.QPushButton(self.cache)
-        self.cache_button_1.setEnabled(False)
-        self.cache_button_1.setGeometry(QtCore.QRect(10, 10, 80, 30))
-        self.cache_button_1.setText("UNPACK")
-        self.cache_button_1.setObjectName("cache_button_1")
+        self.tab_menu.addTab(self.temp_tab, "Temp")
 
-        # BUTTON_REFRESH
-        self.cache_button_1_2 = QtWidgets.QPushButton(self.cache)
-        self.cache_button_1_2.setGeometry(QtCore.QRect(90, 10, 30, 30))
-        self.cache_button_1_2.setObjectName("cache_button_1_2")
+        # CACHE
+        self.cache_tab = QtWidgets.QWidget()
+        self.cache_tab.setObjectName("cache_tab")
+        self.cache_tab.setDisabled(True)
 
-        # CHECKBOX_EXTRACT
-        self.cache_checkbox_1 = QtWidgets.QCheckBox(self.cache)
-        self.cache_checkbox_1.setGeometry(QtCore.QRect(10, 50, 450, 20))
-        self.cache_checkbox_1.setText("Delete sourse files after unpaking")
-        self.cache_checkbox_1.setObjectName("cache_checkbox_1")
+        self.button_cache_extract = QtWidgets.QPushButton(self.cache_tab)
+        self.button_cache_extract.setEnabled(False)
+        self.button_cache_extract.setGeometry(QtCore.QRect(10, 10, 80, 30))
+        self.button_cache_extract.setText("UNPACK")
+        self.button_cache_extract.setObjectName("button_cache_extract")
 
-        # STATUS_PROGRESSBAR
-        self.cache_progress_1 = QtWidgets.QProgressBar(self.cache)
-        self.cache_progress_1.setGeometry(QtCore.QRect(130, 10, 340, 30))
-        self.cache_progress_1.setProperty("value", 0)
-        self.cache_progress_1.setTextVisible(False)
-        self.cache_progress_1.setFormat("%p%")
-        self.cache_progress_1.setObjectName("cache_progress_1")
+        self.button_cache_extract_refresh = QtWidgets.QPushButton(self.cache_tab)
+        self.button_cache_extract_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_cache_extract_refresh.setObjectName("button_cache_extract_refresh")
 
-        # STATUS_TEXT
-        self.cache_label = QtWidgets.QLabel(self.cache)
-        self.cache_label.setGeometry(QtCore.QRect(300, 40, 170, 15))
-        self.cache_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.cache_label.setObjectName("cache_label")
-        
-        self.TabMenu.addTab(self.cache, "Cache")
-        self.TabMenu.setCurrentIndex(0)
+        self.checkbox_cache_extract = QtWidgets.QCheckBox(self.cache_tab)
+        self.checkbox_cache_extract.setGeometry(QtCore.QRect(10, 50, 450, 20))
+        self.checkbox_cache_extract.setText("Delete sourse files after unpaking")
+        self.checkbox_cache_extract.setObjectName("checkbox_cache_extract")
 
-        self.label = QtWidgets.QLabel(Window)
-        self.label.setGeometry(QtCore.QRect(315, 275, 170, 15))
-        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label.setObjectName("label")
-        self.label.setText("by todtk")
+        self.progressbar_cache_extract = QtWidgets.QProgressBar(self.cache_tab)
+        self.progressbar_cache_extract.setGeometry(QtCore.QRect(130, 10, 340, 30))
+        self.progressbar_cache_extract.setProperty("value", 0)
+        self.progressbar_cache_extract.setTextVisible(False)
+        self.progressbar_cache_extract.setFormat("%p%")
+        self.progressbar_cache_extract.setObjectName("progressbar_cache_extract")
 
-        QtCore.QMetaObject.connectSlotsByName(Window)
+        self.label_cache_extract = QtWidgets.QLabel(self.cache_tab)
+        self.label_cache_extract.setGeometry(QtCore.QRect(300, 40, 170, 15))
+        self.label_cache_extract.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_cache_extract.setObjectName("label_cache_extract")
+
+        self.tab_menu.addTab(self.cache_tab, "Cache")
+        self.tab_menu.setCurrentIndex(0)
+
+        self.label_owner = QtWidgets.QLabel(window)
+        self.label_owner.setGeometry(QtCore.QRect(315, 275, 170, 15))
+        self.label_owner.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.label_owner.setObjectName("label_owner")
+        self.label_owner.setText("by todtk")
+
+        QtCore.QMetaObject.connectSlotsByName(window)
