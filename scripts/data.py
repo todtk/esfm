@@ -25,6 +25,10 @@ class DataManager:
             "files",
             "data",
             "")
+        self.logs_path = os.path.join(
+            os.getcwd(),
+            "logs",
+            "")
 
     # DECODER
     def check_datapack(self) -> bool:
@@ -73,6 +77,12 @@ class DataManager:
 
     def delete_datapck(self) -> None:
         os.remove(self.pck_path)
+
+    def open_logs_folder(self) -> None:
+        os.startfile(self.logs_path, operation='open', show_cmd=1)
+
+    def open_data_folder(self) -> None:
+        os.startfile(self.data_path, operation='open', show_cmd=1)
 
     @staticmethod
     def read_header(header: bytes) -> tuple[int, int, int]:
