@@ -37,7 +37,7 @@ class WindowElems(object):
 
         self.checkbox_data_decode_delete_after = QtWidgets.QCheckBox(self.data_tab)
         self.checkbox_data_decode_delete_after.setGeometry(QtCore.QRect(10, 50, 450, 20))
-        self.checkbox_data_decode_delete_after.setText("Delete data.pack")
+        self.checkbox_data_decode_delete_after.setText("Delete encoded archive after decoding")
         self.checkbox_data_decode_delete_after.setObjectName("checkbox_data_decode_delete_after")
 
         self.progressbar_data_decode = QtWidgets.QProgressBar(self.data_tab)
@@ -64,17 +64,17 @@ class WindowElems(object):
 
         self.checkbox_data_extract_delete_after = QtWidgets.QCheckBox(self.data_tab)
         self.checkbox_data_extract_delete_after.setGeometry(QtCore.QRect(10, 120, 450, 20))
-        self.checkbox_data_extract_delete_after.setText("Delete data.pck")
+        self.checkbox_data_extract_delete_after.setText("Delete decoded archive after unpacking")
         self.checkbox_data_extract_delete_after.setObjectName("checkbox_data_extract_delete_after")
 
         self.checkbox_data_open_logs_folder = QtWidgets.QCheckBox(self.data_tab)
         self.checkbox_data_open_logs_folder.setGeometry(QtCore.QRect(10, 140, 450, 20))
-        self.checkbox_data_open_logs_folder.setText("Open log")
+        self.checkbox_data_open_logs_folder.setText("Open log file after unpacking")
         self.checkbox_data_open_logs_folder.setObjectName("checkbox_data_open_logs_folder")
 
         self.checkbox_data_open_data_folder = QtWidgets.QCheckBox(self.data_tab)
         self.checkbox_data_open_data_folder.setGeometry(QtCore.QRect(10, 160, 450, 20))
-        self.checkbox_data_open_data_folder.setText("Open data")
+        self.checkbox_data_open_data_folder.setText("Open data folder after unpacking")
         self.checkbox_data_open_data_folder.setObjectName("checkbox_data_open_data_folder")
 
         self.progressbar_data_extract = QtWidgets.QProgressBar(self.data_tab)
