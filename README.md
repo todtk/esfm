@@ -1,4 +1,4 @@
-![banner](https://raw.githubusercontent.com/todtk/esfm/main/readme/banner.png)
+![banner](https://raw.githubusercontent.com/todtk/esfm/main/.readme/banner.png)
 
 ### SYSTEM REQUIREMENTS
 
