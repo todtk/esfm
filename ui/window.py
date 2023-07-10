@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtWidgets
-
-import scripts
 from .elems import WindowElems
 from .slots import WindowSlots
 
 
 class AppWindow(QtWidgets.QWidget):
 
-    def __init__(self, version: float, data: scripts.DataManager, parent=None) -> None:
+    def __init__(self, version: float, parent=None) -> None:
 
         QtWidgets.QWidget.__init__(self, parent)
 
@@ -18,7 +16,7 @@ class AppWindow(QtWidgets.QWidget):
         self.ui = WindowElems()
         self.ui.setup_ui(self)
 
-        self.obj = WindowSlots(ui=self.ui, data=data)
+        self.obj = WindowSlots(ui=self.ui)
         self.obj.check_all()
 
         # refresh buttons

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
+from app import file
 from .threads import *
 
 
 class WindowSlots(QtCore.QObject):
 
-    def __init__(self, ui, data):
+    def __init__(self, ui):
         QtCore.QObject.__init__(self)
 
         self.ui = ui
-
-        self.data = data
 
         self.dd_thread = DataDecodeThread()
         self.dd_thread.started.connect(self.decode_data_started)
@@ -32,7 +31,7 @@ class WindowSlots(QtCore.QObject):
     # DECODE
     def check_data1(self) -> None:
         """check data pack file, swicth buttons status"""
-        if self.data.check_datapack():
+        if file.exists(data.encoded_file_path):
             self.ui.button_data_decode.setEnabled(True)
             self.ui.label_data_decode.setText("ready")
         else:
@@ -57,20 +56,20 @@ class WindowSlots(QtCore.QObject):
     def decode_data_finished(self) -> None:
         """enable buttons, change window status"""
         if self.ui.checkbox_data_decode_delete_after.checkState() == 2:
-            self.data.delete_datapack()
+            file.delete(data.encoded_file_path)
 
         self.check_all()
 
         self.ui.progressbar_data_decode.setProperty("value", 100)
         self.ui.label_data_decode.setText("decoded")
 
-    def decode_data_change(self, cur_persent: int) -> None:
-        self.ui.progressbar_data_decode.setProperty("value", cur_persent)
+    def decode_data_change(self, current_percent: int) -> None:
+        self.ui.progressbar_data_decode.setProperty("value", current_percent)
 
     # EXTRACT
     def check_data2(self) -> None:
         """check data.pck file, swicth buttons status"""
-        if self.data.check_datapck():
+        if file.exists(data.decoded_file_path):
             self.ui.button_data_extract.setEnabled(True)
             self.ui.label_data_extract.setText("ready")
         else:
@@ -95,13 +94,13 @@ class WindowSlots(QtCore.QObject):
     def extract_data_finished(self) -> None:
         """enable buttons, change window status"""
         if self.ui.checkbox_data_extract_delete_after.checkState() == 2:
-            self.data.delete_datapck()
+            file.delete(data.decoded_file_path)
 
         if self.ui.checkbox_data_open_logs_folder.checkState() == 2:
-            self.data.open_logs_folder()
+            file.open(data.logs_folder_path)
 
         if self.ui.checkbox_data_open_data_folder.checkState() == 2:
-            self.data.open_data_folder()
+            file.open(data.data_folder_path)
 
         self.check_all()
 
