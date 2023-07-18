@@ -33,6 +33,7 @@ class WindowElems(object):
 
         self.button_data_decode_refresh = QtWidgets.QPushButton(self.data_tab)
         self.button_data_decode_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_data_decode_refresh.setText("⭯")
         self.button_data_decode_refresh.setObjectName("button_data_decode_refresh")
 
         self.checkbox_data_decode_delete_after = QtWidgets.QCheckBox(self.data_tab)
@@ -60,6 +61,7 @@ class WindowElems(object):
 
         self.button_data_extract_refresh = QtWidgets.QPushButton(self.data_tab)
         self.button_data_extract_refresh.setGeometry(QtCore.QRect(90, 80, 30, 30))
+        self.button_data_extract_refresh.setText("⭯")
         self.button_data_extract_refresh.setObjectName("button_data_extract_refresh")
 
         self.checkbox_data_extract_delete_after = QtWidgets.QCheckBox(self.data_tab)
@@ -104,6 +106,7 @@ class WindowElems(object):
 
         self.button_temp_extract_refresh = QtWidgets.QPushButton(self.temp_tab)
         self.button_temp_extract_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_temp_extract_refresh.setText("⭯")
         self.button_temp_extract_refresh.setObjectName("button_temp_extract_refresh")
 
         self.checkbox_temp_extract_delete_after = QtWidgets.QCheckBox(self.temp_tab)
@@ -138,6 +141,7 @@ class WindowElems(object):
 
         self.button_cache_extract_refresh = QtWidgets.QPushButton(self.cache_tab)
         self.button_cache_extract_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
+        self.button_cache_extract_refresh.setText("⭯")
         self.button_cache_extract_refresh.setObjectName("button_cache_extract_refresh")
 
         self.checkbox_cache_extract = QtWidgets.QCheckBox(self.cache_tab)
