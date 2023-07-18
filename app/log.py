@@ -11,11 +11,11 @@ class Log:
 
     def __init__(self):
 
-        self.get_folder()
+        self.create_folder()
         self.get_config()
         self.logger = logging.getLogger('app')
 
-    def get_folder(self):
+    def create_folder(self):
         pathlib.Path(os.path.join(os.getcwd(), 'logs')).mkdir(parents=True, exist_ok=True)
 
     def get_config(self):
