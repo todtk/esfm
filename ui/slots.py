@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from app import file
+from app import file, folder
 from .threads import *
 
 
@@ -97,10 +97,10 @@ class WindowSlots(QtCore.QObject):
             file.delete(data.decoded_file_path)
 
         if self.ui.checkbox_data_open_logs_folder.checkState() == 2:
-            file.open(data.logs_folder_path)
+            folder.open('logs')
 
         if self.ui.checkbox_data_open_data_folder.checkState() == 2:
-            file.open(data.data_folder_path)
+            folder.open(data.data_folder_path)
 
         self.check_all()
 
