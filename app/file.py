@@ -96,7 +96,6 @@ class Folder:
     def exists(self, path: str) -> bool:
         return not os.path.isfile(path)
 
-
     @log.wrapper('DEBUG')
     def create(self, path: str):
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
