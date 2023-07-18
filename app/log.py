@@ -3,7 +3,7 @@
 import os
 import logging
 import pathlib
-from time import strftime, gmtime
+from time import strftime, gmtime, time
 from logging.config import dictConfig
 
 
@@ -25,38 +25,38 @@ class Log:
                 "disabled_existing_loggers": False,
                 "formatters": {
                     "default": {
-                        "format": "%(levelname)-10s %(asctime)s | %(func)-15s | %(message)s",
+                        "format": "[%(asctime)s] %(levelname)-10s | %(func)-15s | %(message)s",
                         "datefmt": "%Y-%m-%d %H:%M:%S",
                     },
-                    "new_file": {
-                        "format": "%(asctime)s | EXTRACTED | %(path)s",
+                    "extract": {
+                        "format": "[%(asctime)s] | EXTRACTED | %(path)s",
                         "datefmt": "%Y-%m-%d %H:%M:%S",
                     },
                 },
                 "handlers": {
                     "console": {
-                        "level": "DEBUG",
+                        "level": "INFO",
                         "class": "logging.StreamHandler",
                         "formatter": "default",
                     },
-                    "application": {
+                    "debug": {
                         "level": "DEBUG",
                         "class": "logging.FileHandler",
                         "filename": f"logs/app.log",
                         "mode": "a",
                         "formatter": "default",
                     },
-                    "extractor": {
+                    "info": {
                         "level": "INFO",
                         "class": "logging.FileHandler",
-                        "filename": f"logs/{strftime('%d%m%Y', gmtime())}.log",
-                        "mode": "w",
-                        "formatter": "new_file",
+                        "filename": f"logs/{strftime('%d-%m-%Y', gmtime())}.log",
+                        "mode": "a",
+                        "formatter": "extract",
                     },
                 },
                 "loggers": {
                     "app": {
-                        "handlers": ["console", "application", "extractor"],
+                        "handlers": ["console", "debug", "info"],
                         "level": "DEBUG",
                         "propagate": False,
                     },
@@ -84,6 +84,10 @@ class Log:
 
             def __function(*args, **kwargs):
                 __result = function(*args, **kwargs)
+
+                if mode == 'INFO':
+                    if not __result:
+                        return __result
 
                 levels.get(mode)(
                     msg=__result,
