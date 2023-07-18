@@ -24,6 +24,13 @@ class Data:
             "data.plp"
         )
 
+        self.data_folder_path = os.path.join(
+            os.getcwd(),
+            "client",
+            "files",
+            "data"
+        )
+
     # DECODER
     @staticmethod
     def xor(value: bytes, key: bytes) -> bytes:  # checked
