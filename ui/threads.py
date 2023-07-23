@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore
-from app import data
+from app import data, temp
 
 
 class DataDecodeThread(QtCore.QThread):
@@ -25,13 +25,13 @@ class DataExtractThread(QtCore.QThread):
 
 
 class TempExtractThread(QtCore.QThread):
-    mysignal = QtCore.pyqtSignal(dict)
+    mysignal = QtCore.pyqtSignal(int)
 
-    def __init__(self, temp, parent=None) -> None:
+    def __init__(self, parent=None) -> None:
         QtCore.QThread.__init__(self, parent=parent)
         
     def run(self):
-        ...
+        temp.extract(self.mysignal)
 
 
 class CacheExtractThread(QtCore.QThread):
