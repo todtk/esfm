@@ -28,3 +28,4 @@ class AppWindow(QtWidgets.QWidget):
         # functional buttons
         self.ui.button_data_decode.clicked.connect(self.obj.decode_data_clicked)
         self.ui.button_data_extract.clicked.connect(self.obj.extract_data_clicked)
+        self.ui.button_temp_extract.clicked.connect(self.obj.extract_temp_clicked)
