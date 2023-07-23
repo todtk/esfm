@@ -21,6 +21,11 @@ class WindowSlots(QtCore.QObject):
         self.de_thread.finished.connect(self.extract_data_finished)
         self.de_thread.mysignal.connect(self.extract_data_change, QtCore.Qt.QueuedConnection)
 
+        self.te_thread = TempExtractThread()
+        self.te_thread.started.connect(self.extract_temp_started)
+        self.te_thread.finished.connect(self.extract_temp_finished)
+        self.te_thread.mysignal.connect(self.extract_temp_change, QtCore.Qt.QueuedConnection)
+
     def check_all(self):
         self.check_data1()
         self.check_data2()
@@ -91,6 +96,9 @@ class WindowSlots(QtCore.QObject):
         """change window status"""
         self.ui.label_data_extract.setText("extracting...")
 
+    def extract_data_change(self, cur_persent: int) -> None:
+        self.ui.progressbar_data_extract.setProperty("value", cur_persent)
+
     def extract_data_finished(self) -> None:
         """enable buttons, change window status"""
         if self.ui.checkbox_data_extract_delete_after.checkState() == 2:
@@ -107,18 +115,37 @@ class WindowSlots(QtCore.QObject):
         self.ui.progressbar_data_extract.setProperty("value", 100)
         self.ui.label_data_extract.setText("extracted")
 
-    def extract_data_change(self, cur_persent: int) -> None:
-        self.ui.progressbar_data_extract.setProperty("value", cur_persent)
-
     # TAB_TEMP
     def check_temp(self):
-        self.ui.label_temp_extract.setText("dev in progress")
-    #     if self.temp.check_files():
-    #         self.ui.button_temp_extract.setEnabled(True)
-    #         self.ui.label_temp_extract.setText("<files found>")
-    #     else:
-    #         self.ui.button_temp_extract.setDisabled(True)
-    #         self.ui.label_temp_extract.setText("<files not found>")
+
+        if folder.exists(temp.temp_folder_path):
+            self.ui.button_temp_extract.setEnabled(True)
+            self.ui.label_temp_extract.setText("ready")
+        else:
+            self.ui.button_temp_extract.setDisabled(True)
+            self.ui.label_temp_extract.setText("not ready")
+
+        self.ui.button_temp_extract_refresh.setEnabled(True)
+        self.ui.progressbar_temp_extract.setProperty("value", 0)
+
+    def extract_temp_clicked(self) -> None:
+        """disable buttons, start extract"""
+        self.ui.button_temp_extract.setDisabled(True)
+        self.ui.button_temp_extract_refresh.setDisabled(True)
+        self.te_thread.start()
+
+    def extract_temp_started(self) -> None:
+        """change window status"""
+        self.ui.label_temp_extract.setText("extracting...")
+
+    def extract_temp_change(self, cur_persent: int) -> None:
+        self.ui.progressbar_temp_extract.setProperty("value", cur_persent)
+
+    def extract_temp_finished(self) -> None:
+        self.check_all()
+
+        self.ui.progressbar_temp_extract.setProperty("value", 100)
+        self.ui.label_temp_extract.setText("extracted")
 
     # TAB_CACHE
     def check_cache(self):

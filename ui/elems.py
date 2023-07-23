@@ -96,7 +96,6 @@ class WindowElems(object):
         # TEMP
         self.temp_tab = QtWidgets.QWidget()
         self.temp_tab.setObjectName("temp_tab")
-        self.temp_tab.setDisabled(True)
 
         self.button_temp_extract = QtWidgets.QPushButton(self.temp_tab)
         self.button_temp_extract.setEnabled(False)
@@ -108,11 +107,6 @@ class WindowElems(object):
         self.button_temp_extract_refresh.setGeometry(QtCore.QRect(90, 10, 30, 30))
         self.button_temp_extract_refresh.setText("⭯")
         self.button_temp_extract_refresh.setObjectName("button_temp_extract_refresh")
-
-        self.checkbox_temp_extract_delete_after = QtWidgets.QCheckBox(self.temp_tab)
-        self.checkbox_temp_extract_delete_after.setGeometry(QtCore.QRect(10, 50, 450, 20))
-        self.checkbox_temp_extract_delete_after.setText("Delete sourse files after unpaking")
-        self.checkbox_temp_extract_delete_after.setObjectName("checkbox_temp_extract_delete_after")
 
         self.progressbar_temp_extract = QtWidgets.QProgressBar(self.temp_tab)
         self.progressbar_temp_extract.setGeometry(QtCore.QRect(130, 10, 340, 30))
