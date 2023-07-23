@@ -2,6 +2,7 @@
 
 import os
 import mmap
+import shutil
 import pathlib
 import platform
 from app.log import log
@@ -97,7 +98,7 @@ class Folder:
         return not os.path.isfile(path)
 
     @log.wrapper('DEBUG')
-    def create(self, path: str):
+    def create(self, path: str) -> None:
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
 
     @log.wrapper('DEBUG')
@@ -105,9 +106,8 @@ class Folder:
         os.startfile(filepath=path, operation='open', show_cmd=1)
 
     @log.wrapper('DEBUG')
-    def delete(self):
-        """ ... """
-        ...
+    def delete(self, path: str) -> None:
+        shutil.rmtree(path)
 
 
 class MMap:
