@@ -8,7 +8,7 @@ from ui.window import AppWindow
 
 
 class ESFM():
-    __version__: float = 0.04
+    __version__: float = 0.05
 
     def __init__(self) -> None:
 
